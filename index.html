@@ -8,103 +8,50 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
   <style>
-    :root{
-      --bg:#0a0b0f; --fg:#eaeef6; --muted:#9aa4b2;
-      --brand:#8b5cf6; --brand2:#06b6d4; --brand3:#f59e0b;
-      --card:#111319; --glass:rgba(255,255,255,.06);
-    }
-    *{box-sizing:border-box}
-    html,body{margin:0;height:100%;background:var(--bg);color:var(--fg);font-family:Inter,system-ui,Segoe UI,Roboto,Arial}
+    :root{--bg:#0a0b0f;--fg:#eaeef6;--muted:#9aa4b2;--brand:#8b5cf6;--brand2:#06b6d4;--brand3:#f59e0b;--card:#111319;--glass:rgba(255,255,255,.06)}
+    *{box-sizing:border-box} html,body{margin:0;height:100%;background:var(--bg);color:var(--fg);font-family:Inter,system-ui,Segoe UI,Roboto,Arial}
     a{text-decoration:none;color:inherit}
-    /* Animated gradient backdrop */
-    .backdrop{
-      position:fixed; inset:-20vmax; z-index:-2; filter:blur(60px); opacity:.7;
-      background: radial-gradient(35vmax 35vmax at 15% 20%, rgba(139,92,246,.25), transparent 60%),
-                  radial-gradient(40vmax 40vmax at 80% 10%, rgba(6,182,212,.18), transparent 60%),
-                  radial-gradient(50vmax 50vmax at 50% 90%, rgba(245,158,11,.18), transparent 60%);
-      animation: float 18s ease-in-out infinite alternate;
-    }
-    @keyframes float{
-      from{transform:translate3d(0,0,0)}
-      to{transform:translate3d(2rem,-1rem,0)}
-    }
-
-    header{
-      display:flex;align-items:center;justify-content:space-between;gap:16px;
-      padding:16px 22px; position:sticky; top:0; z-index:10;
-      background:linear-gradient(to bottom, rgba(10,11,15,.8), rgba(10,11,15,0));
-      border-bottom:1px solid rgba(255,255,255,.06);
-      backdrop-filter:blur(8px);
-    }
+    .backdrop{position:fixed;inset:-20vmax;z-index:-2;filter:blur(60px);opacity:.7;background:
+      radial-gradient(35vmax 35vmax at 15% 20%, rgba(139,92,246,.25), transparent 60%),
+      radial-gradient(40vmax 40vmax at 80% 10%, rgba(6,182,212,.18), transparent 60%),
+      radial-gradient(50vmax 50vmax at 50% 90%, rgba(245,158,11,.18), transparent 60%);
+      animation:float 18s ease-in-out infinite alternate}
+    @keyframes float{from{transform:translate3d(0,0,0)}to{transform:translate3d(2rem,-1rem,0)}}
+    header{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 22px;position:sticky;top:0;z-index:10;background:linear-gradient(to bottom, rgba(10,11,15,.8), rgba(10,11,15,0));border-bottom:1px solid rgba(255,255,255,.06);backdrop-filter:blur(8px)}
     .brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.3px}
-    .logo{width:28px;height:28px;border-radius:8px;background:
-      conic-gradient(from 210deg at 50% 50%, var(--brand), var(--brand2), var(--brand3), var(--brand));
-      box-shadow:0 10px 30px rgba(139,92,246,.35);
-    }
-    nav a{margin-left:16px;color:var(--muted)}
-    nav a:hover{color:var(--fg)}
+    .logo{width:28px;height:28px;border-radius:8px;background:conic-gradient(from 210deg at 50% 50%, var(--brand), var(--brand2), var(--brand3), var(--brand));box-shadow:0 10px 30px rgba(139,92,246,.35)}
+    nav a{margin-left:16px;color:var(--muted)} nav a:hover{color:var(--fg)}
 
-    .hero{
-      max-width:1200px;margin:0 auto;padding:40px 22px 20px;
-      display:grid;gap:28px; align-items:center;
-      grid-template-columns: 1.05fr .95fr;
-    }
-    @media (max-width: 900px){ .hero{grid-template-columns:1fr} }
+    /* Language pill selector */
+    .lang-pill{display:flex;gap:4px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);padding:4px;border-radius:999px}
+    .pill-item{display:inline-block;padding:6px 10px;border-radius:999px;color:#cfd6e6}
+    .pill-item.active{background:linear-gradient(135deg,var(--brand),var(--brand2));color:#0b0c10;font-weight:800;box-shadow:0 6px 18px rgba(6,182,212,.25)}
+    .pill-item:hover{color:#fff}
 
-    .title{
-      font-family:'Playfair Display', serif; font-weight:700;
-      font-size: clamp(28px, 4.5vw, 56px); line-height:1.07; margin:6px 0 10px;
-      letter-spacing:.2px;
-    }
+    .hero{max-width:1200px;margin:0 auto;padding:40px 22px 20px;display:grid;gap:28px;align-items:center;grid-template-columns:1.05fr .95fr}
+    @media (max-width:900px){.hero{grid-template-columns:1fr}}
+    .title{font-family:'Playfair Display',serif;font-weight:700;font-size:clamp(28px,4.5vw,56px);line-height:1.07;margin:6px 0 10px;letter-spacing:.2px}
     .subtitle{color:var(--muted);font-size:clamp(15px,1.6vw,18px);margin:0 0 16px}
     .high{background:linear-gradient(90deg,var(--brand),var(--brand2));-webkit-background-clip:text;background-clip:text;color:transparent}
-
     .cta{display:flex;gap:12px;flex-wrap:wrap}
-    .btn{
-      border:none;cursor:pointer;font-weight:800;border-radius:12px;padding:12px 16px;
-      transition:transform .08s ease, box-shadow .2s ease;
-    }
-    .btn.primary{
-      background:linear-gradient(135deg,var(--brand),var(--brand2));
-      color:#0b0c10; box-shadow:0 10px 30px rgba(6,182,212,.25);
-    }
-    .btn.primary:hover{transform:translateY(-1px); box-shadow:0 14px 36px rgba(6,182,212,.32)}
-    .btn.ghost{
-      background:transparent; color:var(--fg);
-      border:1px solid rgba(255,255,255,.12);
-    }
+    .btn{border:none;cursor:pointer;font-weight:800;border-radius:12px;padding:12px 16px;transition:transform .08s ease, box-shadow .2s ease}
+    .btn.primary{background:linear-gradient(135deg,var(--brand),var(--brand2));color:#0b0c10;box-shadow:0 10px 30px rgba(6,182,212,.25)}
+    .btn.primary:hover{transform:translateY(-1px);box-shadow:0 14px 36px rgba(6,182,212,.32)}
+    .btn.ghost{background:transparent;color:var(--fg);border:1px solid rgba(255,255,255,.12)}
     .btn.ghost:hover{border-color:rgba(255,255,255,.3)}
-
-    .card{
-      border-radius:16px; overflow:hidden; border:1px solid rgba(255,255,255,.08);
-      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
-      position:relative;
-    }
-    .mock{
-      aspect-ratio:16/10; display:grid; place-items:center; color:#cdd6e6;
-      background:
-        radial-gradient(120px 120px at 20% 30%, rgba(139,92,246,.12), transparent 60%),
-        radial-gradient(120px 120px at 80% 20%, rgba(6,182,212,.12), transparent 60%),
-        radial-gradient(160px 160px at 60% 80%, rgba(245,158,11,.12), transparent 60%),
-        linear-gradient(180deg,#0f1219,#0b0d14);
-    }
-    .mock .ui{
-      background:var(--glass); border:1px solid rgba(255,255,255,.12); border-radius:12px;
-      padding:10px 14px; box-shadow:0 10px 30px rgba(0,0,0,.35);
-    }
-
-    .grid{
-      max-width:1200px;margin:28px auto;padding:0 22px;
-      display:grid;grid-template-columns:repeat(3,1fr);gap:14px;
-    }
-    @media (max-width: 900px){ .grid{grid-template-columns:1fr} }
-    .tile{
-      background:var(--card); border:1px solid rgba(255,255,255,.07); border-radius:14px; padding:16px;
-    }
-    .tile h3{margin:6px 0 6px; font-size:16px}
-    .tile p{margin:0; color:var(--muted); font-size:14px}
-
-    footer{color:var(--muted); text-align:center; padding:24px 10px}
+    .card{border-radius:16px;overflow:hidden;border:1px solid rgba(255,255,255,.08);background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));position:relative}
+    .mock{aspect-ratio:16/10;display:grid;place-items:center;color:#cdd6e6;background:
+      radial-gradient(120px 120px at 20% 30%, rgba(139,92,246,.12), transparent 60%),
+      radial-gradient(120px 120px at 80% 20%, rgba(6,182,212,.12), transparent 60%),
+      radial-gradient(160px 160px at 60% 80%, rgba(245,158,11,.12), transparent 60%),
+      linear-gradient(180deg,#0f1219,#0b0d14)}
+    .mock .ui{background:var(--glass);border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:10px 14px;box-shadow:0 10px 30px rgba(0,0,0,.35)}
+    .grid{max-width:1200px;margin:28px auto;padding:0 22px;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    @media (max-width:900px){.grid{grid-template-columns:1fr}}
+    .tile{background:#0e1117;border:1px solid rgba(255,255,255,.07);border-radius:14px;padding:16px}
+    .tile h3{margin:6px 0 6px;font-size:16px}
+    .tile p{margin:0;color:#aab3c1;font-size:14px}
+    footer{color:#9aa4b2;text-align:center;padding:24px 10px}
   </style>
 </head>
 <body>
@@ -119,12 +66,16 @@
       <a href="#funzioni">Funzioni</a>
       <a href="planner.html" class="start">Apri il planner</a>
     </nav>
+    <div class="lang-pill" role="tablist" aria-label="Lingua">
+      <a role="tab" class="pill-item active" href="index.html" aria-selected="true">IT</a>
+      <a role="tab" class="pill-item" href="index.en.html" aria-selected="false">EN</a>
+    </div>
   </header>
 
   <main class="hero">
     <section>
       <div class="title">Sogna. Pianifica. Parti.</div>
-      <p class="subtitle">Un planner elegante per trasformare idee in itinerari reali: tappe riordinabili, mappa interattiva, immagini ispirazionali e link utili, tutto in un unico posto.</p>
+      <p class="subtitle">Un planner elegante per trasformare idee in itinerari reali: tappe riordinabili, mappa interattiva, immagini e link utili.</p>
       <p class="subtitle">Dalla fuga di un weekend al grande <span class="high">viaggio</span> di una vita.</p>
       <div class="cta">
         <a class="btn primary" href="planner.html">Crea il tuo itinerario</a>
@@ -141,15 +92,15 @@
   <section id="funzioni" class="grid">
     <article class="tile">
       <h3>Planner visuale</h3>
-      <p>Organizza i giorni, aggiungi luoghi e trascinali nell’ordine giusto: è tutto immediato e flessibile.</p>
+      <p>Organizza i giorni, aggiungi luoghi e trascinali nell’ordine giusto.</p>
     </article>
     <article class="tile">
       <h3>Mappa interattiva</h3>
-      <p>Vedi i marker, spostali, apri le destinazioni in Google Maps e ottieni indirizzi precisi in un tap.</p>
+      <p>Vedi i marker, spostali e apri le destinazioni in Google Maps.</p>
     </article>
     <article class="tile">
       <h3>Ispirazione smart</h3>
-      <p>Una galleria con immagini per ogni tappa per sbloccarti quando servono idee fresche.</p>
+      <p>Galleria immagini per ogni tappa per stimolare le idee.</p>
     </article>
   </section>
 
